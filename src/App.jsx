@@ -7,11 +7,11 @@ import useProducts from './hooks/useProduct';
 function App() {
   const { productData, error, loading } = useProducts();
   console.log("Current Data:", productData);
-  console.log("Current status:", loading)
+  console.log("Current status:", loading);
 
   return (
     <>
-      <Header />
+      <Header /> 
       <main>
         <Outlet />
       </main>

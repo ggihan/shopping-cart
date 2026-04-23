@@ -12,11 +12,10 @@ export default function useProducts() {
   const [loading, setLoading] = useState(!productData);
 
   useEffect(() => { 
-    if (productData) {
-      return;
-    }
+    if (productData) return;
 
-    fetch('https://dummyjson.com/products?limit=200')
+    const controller = new AbortController();
+    fetch('https://dummyjson.com/products?limit=200', { signal: controller.signal })
     .then((response) => {
       if (response.status >= 400) {
         throw new Error("server error");
@@ -25,12 +24,17 @@ export default function useProducts() {
     })
     .then((response) => {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(response.products));
-      setProductData(response.products)
+      setProductData(response.products);
+      setLoading(false);
     })
-    .catch((error) => setError(error))
-    .finally(() => setLoading(false));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    .catch((error) => {
+      if (error.name === 'AbortError') return;
+      setError(error);
+    });
+
+    return () => controller.abort();
+    
+  }, [productData]);
 
   return { productData, error, loading };
 };
