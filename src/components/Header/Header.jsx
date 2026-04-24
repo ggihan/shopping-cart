@@ -1,4 +1,5 @@
 import Logo from "../Logo/Logo";
+import MiniShoppingCart from "../MiniShoppingCart/MiniShoppingCart";
 import styles from "./Header.module.css";
 import { Link } from "react-router";
 
@@ -7,16 +8,18 @@ export default function Header() {
   return (
     <header>
       <Logo className={styles.logo} />
-      <nav>
-        <ul>
-          <li>
+      <nav className={styles.nav}>
+        <ul className={`flex-row ${styles.ul}`}>
+          <li className={styles.link}>
             <Link to="/">Home</Link>
           </li>
-          <li>
+          <li className={styles.link}>
             <Link to="shop">Shop</Link>
           </li>
-          <li>
-            <Link to="cart">Cart</Link>
+          <li className={styles.lastLink}>
+            <Link to="cart" className="inline-flex-row">
+              <MiniShoppingCart size="5rem" totalItems={69}/>
+            </Link>
           </li>
         </ul>
       </nav>

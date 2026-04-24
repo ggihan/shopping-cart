@@ -12,3 +12,27 @@ img, picture, video, canvas, svg {
 ul {
   list-style: none;
 }
+
+a {
+  text-decoration: none;
+}
+
+a:hover,
+.miniShoppingCard:hover {
+  outline: 2px solid #315e99;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.inline-flex-row {
+  display: inline-flex;
+  flex-direction: row;
+}

@@ -1,4 +1,4 @@
-const Logo = ({ className, textColor = "#232f3e", arrowColor = "#ff9900", strokeWidth = 7 }) => {
+const Logo = ({ className, textColor = "#232f3e", arrowColor = "#0f4f0a", strokeWidth = 7 }) => {
   return (
     <svg className={className} viewBox="0 0 240 120" xmlns="http://www.w3.org/2000/svg">
       <text 

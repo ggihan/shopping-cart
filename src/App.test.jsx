@@ -18,7 +18,6 @@ describe('App', () => {
     });
 
     render(<RouterProvider router={router} />);
-    screen.debug();
 
     await waitFor(() => {
       const heading = screen.getByRole('heading', { name: /emazon/i });
@@ -50,10 +49,28 @@ describe('App', () => {
     render(<RouterProvider router={router} />);
 
     const user = userEvent.setup();
-    const shopLink = screen.getByRole('link', { name: /cart/i });
+    const cartLink = screen.getByRole('link', { name: /cart/i });
 
-    await user.click(shopLink);
-    const heading = screen.getByRole('heading', { name: /shop/i });
+    await user.click(cartLink);
+    const heading = screen.getByRole('heading', { name: /cart/i });
+
+    expect(heading).toBeInTheDocument();
+  });
+
+  it('renders home page when user clicks home link', async () => {
+    const router = createMemoryRouter(routes, {
+      initialEntries: ["/"],
+    });
+
+    render(<RouterProvider router={router} />);
+
+    const user = userEvent.setup();
+    const cartLink = screen.getByRole('link', { name: /cart/i });
+    const homeLink = screen.getByRole('link', { name: /home/i });
+
+    await user.click(cartLink);
+    await user.click(homeLink);
+    const heading = screen.getByRole('heading', { name: /emazon/i });
 
     expect(heading).toBeInTheDocument();
   });
