@@ -1,8 +1,11 @@
 import styles from "./Home.module.css";
 import introImage from "../../assets/images/intro-image.webp"
+import ProductCard from "../ProductCard/ProductCard";
+import { useOutletContext } from "react-router";
 
 export default function Home() {
-  
+  const {randomHomeData, homeCategoryList} = useOutletContext();
+
   return (
     <div className={styles.home}>
       <div className={styles.intro}>
@@ -21,7 +24,16 @@ export default function Home() {
         </div>
       </div>
       <div className={styles.showcase}>
-        
+        {homeCategoryList.map((category) => {
+          const items = randomHomeData[category];
+          return (
+            <ProductCard 
+              key={category}
+              cardCategory={category} 
+              items={items} 
+            />
+          );
+        })}
       </div>
     </div>
   );
