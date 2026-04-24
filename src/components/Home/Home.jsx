@@ -4,7 +4,15 @@ import ProductCard from "../ProductCard/ProductCard";
 import { useOutletContext } from "react-router";
 
 export default function Home() {
-  const {randomHomeData, homeCategoryList} = useOutletContext();
+  const {randomHomeData, homeCategoryList, loading} = useOutletContext();
+
+  if (loading) {
+    return (
+      <div className={styles.home}>
+        <h1>Loading our best products...</h1>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.home}>

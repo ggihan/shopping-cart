@@ -7,7 +7,14 @@ import userEvent from '@testing-library/user-event';
 window.fetch = vi.fn(() =>
   Promise.resolve({
     ok: true,
-    json: () => Promise.resolve({ products: [] }),
+    json: () => Promise.resolve({ 
+      products: [
+        { id: 1, title: 'Test 1', category: 'mobile-accessories', images: ['test.jpg'] },
+        { id: 2, title: 'Test 2', category: 'beauty', images: ['test.jpg'] },
+        { id: 3, title: 'Test 3', category: 'groceries', images: ['test.jpg'] },
+        { id: 4, title: 'Test 4', category: 'kitchen-accessories', images: ['test.jpg'] },
+      ]
+    }),
   })
 );
 

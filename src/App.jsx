@@ -20,18 +20,19 @@ function App() {
   const { productData, error, loading } = useProducts();
 
   const randomHomeData = useMemo(() => {
+    if (!productData || loading) return {};
     return homeCategoryList.reduce((acc, category) => {
       const filtered = getObjectsByCategory(productData, category);
       acc[category] = getRandomItems(filtered, 4);
       return acc;
     }, {});
-  }, [productData]);
+  }, [productData, loading]);
 
   return (
     <>
       <Header /> 
       <main>
-        <Outlet context={{randomHomeData, homeCategoryList}} />
+        <Outlet context={{randomHomeData, homeCategoryList, loading}} />
       </main>
       <Footer />
     </>
