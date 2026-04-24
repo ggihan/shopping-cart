@@ -1,4 +1,4 @@
-import { CartIcon } from "../../CartIcon/CartIcon";
+import { CartIcon } from "../CartIcon/CartIcon";
 
 export default function MiniShoppingCart({ totalItems, size }) {
   const numericSize = parseFloat(size);

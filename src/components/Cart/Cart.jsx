@@ -3,6 +3,8 @@
 export default function Cart() {
   
   return (
-    <h1>Shopping Cart</h1>
+    <div>
+      <h1>Shopping Cart</h1>
+    </div>
   );
 };
