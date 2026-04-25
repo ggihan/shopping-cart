@@ -8,6 +8,32 @@ export default function ItemCard({item, onAddToCart }) {
   const increment = () => setQuantity(q => q < 10 ? q + 1 : 10);
   const decrement = () => setQuantity(q => q > 1 ? q - 1 : 1);
 
+  const handleBlur = () => {
+    if (quantity === "" || quantity < 1) {
+      setQuantity(1);
+    }
+    if (quantity > 10) {
+      setQuantity(10);
+    }
+  };
+
+  const handleQuantityChange = (e) => {
+    const value = e.target.value;
+    if (value === "") {
+      setQuantity("");
+      return;
+    }
+    const parsedValue = parseInt(value, 10);
+    if (!isNaN(parsedValue) && parsedValue <= 10) {
+      setQuantity(parsedValue);
+    }
+  };
+
+  const handleAddToCart = () => {
+    const finalQuantity = (quantity === "" || quantity < 1) ? 1 : quantity;
+    onAddToCart(item, finalQuantity);
+  };
+
   return (
     <div className={styles.card}>
       <h3 className={styles.title}>{item.title}</h3>
@@ -31,7 +57,9 @@ export default function ItemCard({item, onAddToCart }) {
             min="1"
             max="10"
             value={quantity}
-            onChange={(e) => setQuantity(e.target.value)}
+            onChange={handleQuantityChange}
+            onBlur={handleBlur}
+            onKeyDown={(e) => ["e", "E", ".", "+", "-"].includes(e.key) && e.preventDefault()}
           />
         </div>
         <Button
@@ -47,7 +75,7 @@ export default function ItemCard({item, onAddToCart }) {
         <Button
           className={styles.addToCartButton}
           children="Add to Cart"
-          onClick={() => onAddToCart(item, quantity)}
+          onClick={handleAddToCart}
         />
       </div>
     </div>
