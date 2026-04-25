@@ -108,4 +108,21 @@ describe('App', () => {
     expect(errorHeading).toBeInTheDocument();
     expect(homeLink).toBeInTheDocument();
   });
+
+  it('shows loading state when fetching data', async () => {
+  
+    vi.mocked(window.fetch).mockReturnValue(new Promise(() => {}));
+
+    const router = createMemoryRouter(routes, {
+      initialEntries: ["/"],
+    });
+
+    render(<RouterProvider router={router} />);
+
+    const loadingIndicator = screen.getByText(/fetching products/i);
+    const homeHeading = screen.queryByRole('heading', { name: /emazon/i });
+    
+    expect(loadingIndicator).toBeInTheDocument();
+    expect(homeHeading).not.toBeInTheDocument();
+  });
 });

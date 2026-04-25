@@ -1,6 +1,7 @@
 import './App.css';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 import { Outlet } from 'react-router';
 import useProducts from './hooks/useProduct';
 import { useMemo } from 'react';
@@ -32,7 +33,7 @@ function App() {
     <>
       <Header /> 
       <main>
-        {/* {loading && <LoadingSpinner />} */}
+        {loading && <LoadingSpinner />}
         {error && <h2 className='error-message'>Could not load products. Please try again. Error: {error}</h2>}
         {!loading && !error && <Outlet context={{randomHomeData, homeCategoryList}} />}  
       </main>
