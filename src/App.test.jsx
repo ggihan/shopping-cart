@@ -1,5 +1,5 @@
 import { describe, it, expect, vi} from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router';
 import routes from './components/Routes/routes';
 import userEvent from '@testing-library/user-event';
@@ -26,10 +26,8 @@ describe('App', () => {
 
     render(<RouterProvider router={router} />);
 
-    await waitFor(() => {
-      const heading = screen.getByRole('heading', { name: /emazon/i });
-      expect(heading).toBeInTheDocument();
-    });
+    const heading = await screen.findByRole('heading', { name: /emazon/i });
+    expect(heading).toBeInTheDocument();
   });
 
   it('renders shop page when user clicks shop link', async () => {
@@ -80,5 +78,34 @@ describe('App', () => {
     const heading = screen.getByRole('heading', { name: /emazon/i });
 
     expect(heading).toBeInTheDocument();
+  });
+
+  it('shows error message when fetch fails', async () => {
+    vi.mocked(window.fetch).mockRejectedValueOnce(new Error("API is down"));
+    
+    const router = createMemoryRouter(routes, {
+      initialEntries: ["/"],
+    });
+
+    render(<RouterProvider router={router} />);
+
+    const errorMessage = await screen.findByRole('heading', { name: /could not load/i });
+
+    expect(errorMessage).toBeInTheDocument();
+    expect(errorMessage).toHaveTextContent("API is down");
+  });
+
+  it('renders ErrorPage when navigating to a non-existent route', async () => {
+    const router = createMemoryRouter(routes, {
+      initialEntries: ["/this-is-a-broken-link"],
+    });
+
+    render(<RouterProvider router={router} />);
+
+    const errorHeading = await screen.findByRole('heading', { name: /this route doesn't exist/i });
+    const homeLink = screen.getByRole('link', { name: /click here to return home/i });
+
+    expect(errorHeading).toBeInTheDocument();
+    expect(homeLink).toBeInTheDocument();
   });
 });

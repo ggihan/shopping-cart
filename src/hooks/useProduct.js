@@ -29,7 +29,7 @@ export default function useProducts() {
     })
     .catch((error) => {
       if (error.name === 'AbortError') return;
-      setError(error);
+      setError(error.message);
     });
 
     return () => controller.abort();

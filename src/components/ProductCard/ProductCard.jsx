@@ -13,11 +13,11 @@ export default function ProductCard({ cardCategory, items }) {
 
   return (
     <div className={styles.card}>
-      <h2>{cardTitle}</h2>
+      <h2 className={styles.title}>{cardTitle}</h2>
       <div className={styles.imageGroup}>
         {items.map((item, id) => (
           <div key={id} className={styles.imageContainer}>
-            <img src={item.images[0]} alt={item.title} width={100}/>
+            <img className={styles.image} src={item.images[0]} alt={item.title} width={100}/>
           </div>
         ))}
       </div>

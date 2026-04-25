@@ -32,7 +32,9 @@ function App() {
     <>
       <Header /> 
       <main>
-        <Outlet context={{randomHomeData, homeCategoryList, loading}} />
+        {/* {loading && <LoadingSpinner />} */}
+        {error && <h2 className='error-message'>Could not load products. Please try again. Error: {error}</h2>}
+        {!loading && !error && <Outlet context={{randomHomeData, homeCategoryList}} />}  
       </main>
       <Footer />
     </>
