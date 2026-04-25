@@ -15,8 +15,8 @@ export default function ProductCard({ cardCategory, items }) {
     <div className={styles.card}>
       <h2 className={styles.title}>{cardTitle}</h2>
       <div className={styles.imageGroup}>
-        {items.map((item, id) => (
-          <div key={id} className={styles.imageContainer}>
+        {items.map((item) => (
+          <div key={item.id} className={styles.imageContainer}>
             <img className={styles.image} src={item.images[0]} alt={item.title} width={100}/>
           </div>
         ))}

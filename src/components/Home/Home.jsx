@@ -10,8 +10,8 @@ export default function Home() {
     <div className={styles.home}>
       <div className={styles.intro}>
         <div className={styles.introCard}>
-          <h1>Emazon</h1>
-          <p>
+          <h1 className={styles.title}>Emazon</h1>
+          <p className={styles.introText}>
             We provide the best products and services around the world!
             <br />
             Most reliable, secure, and fastest shipping there is.
