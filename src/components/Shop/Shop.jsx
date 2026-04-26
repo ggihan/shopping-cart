@@ -67,7 +67,7 @@ export default function Shop() {
   return (
     <div>
       <h1>Shop</h1>
-      <ItemCard item={testItem} onAddToCart={"testing"} />
+      <ItemCard item={testItem} />
     </div>
   );
 };

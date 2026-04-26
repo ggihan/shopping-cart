@@ -1,19 +1,25 @@
 import styles from "./ItemCard.module.css";
 import Button from "../Button/Button";
 import { useState } from "react";
+import { useOutletContext } from "react-router";
 
-export default function ItemCard({item, onAddToCart }) {
+export default function ItemCard({ item }) {
+  const { shoppingCart, addToCart, MAX_ITEM_QUANTITY } = useOutletContext();
   const [quantity, setQuantity] = useState(1);
 
-  const increment = () => setQuantity(q => q < 10 ? q + 1 : 10);
+  const itemInCart = shoppingCart.find((cartItem) => cartItem.id === item.id);
+  const currentInCartQty = itemInCart ? itemInCart.quantity : 0;
+  const isMaxedOut = currentInCartQty >= MAX_ITEM_QUANTITY;
+
+  const increment = () => setQuantity(q => q < MAX_ITEM_QUANTITY ? q + 1 : MAX_ITEM_QUANTITY);
   const decrement = () => setQuantity(q => q > 1 ? q - 1 : 1);
 
   const handleBlur = () => {
     if (quantity === "" || quantity < 1) {
       setQuantity(1);
     }
-    if (quantity > 10) {
-      setQuantity(10);
+    if (quantity > MAX_ITEM_QUANTITY) {
+      setQuantity(MAX_ITEM_QUANTITY);
     }
   };
 
@@ -24,14 +30,16 @@ export default function ItemCard({item, onAddToCart }) {
       return;
     }
     const parsedValue = parseInt(value, 10);
-    if (!isNaN(parsedValue) && parsedValue <= 10) {
+    if (!isNaN(parsedValue) && parsedValue <= MAX_ITEM_QUANTITY) {
       setQuantity(parsedValue);
     }
   };
 
   const handleAddToCart = () => {
     const finalQuantity = (quantity === "" || quantity < 1) ? 1 : quantity;
-    onAddToCart(item, finalQuantity);
+    if (!isMaxedOut) {
+      addToCart(item, finalQuantity);
+    }
   };
 
   return (
@@ -42,40 +50,44 @@ export default function ItemCard({item, onAddToCart }) {
           <img className={styles.image} src={item.images[0]} alt={item.title} width={200}/>
         </div>
         <div className={styles.details}>
-          <p className={styles.price}>{`${item.price}$`}</p>
-          <p className={styles.rating}>{`${item.rating} / 5`}</p>
+          <p className={styles.price}>{`Price: ${item.price}$`}</p>
+          <p className={styles.rating}>{`Rating: ${item.rating} / 5`}</p>
           <p className={styles.description}>{item.description}</p>
         </div>
       </div>
       <div className={styles.controls}>
         <div className={styles.counterContainer}>
-          <label htmlFor={`qty-${item.id}`}>Quantity:</label>
+          <label htmlFor={`qty-${item.id}`}>Quantity: </label>
           <input 
             className={styles.counter}
             id={`qty-${item.id}`}
             type="number"
             min="1"
-            max="10"
+            max={MAX_ITEM_QUANTITY}
             value={quantity}
             onChange={handleQuantityChange}
             onBlur={handleBlur}
             onKeyDown={(e) => ["e", "E", ".", "+", "-"].includes(e.key) && e.preventDefault()}
+            disabled={isMaxedOut}
           />
         </div>
         <Button
           className={styles.incrementButton}
           children="+"
           onClick={increment}
+          aria-label="Increase quantity"
         />
         <Button
           className={styles.decrementButton}
           children="-"
           onClick={decrement}
+          aria-label="Decrease quantity"
         />
         <Button
           className={styles.addToCartButton}
-          children="Add to Cart"
+          children={isMaxedOut ? "Limit Reached" : "Add to Cart"}
           onClick={handleAddToCart}
+          disabled={isMaxedOut}
         />
       </div>
     </div>
