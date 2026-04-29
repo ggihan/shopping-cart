@@ -5,10 +5,7 @@ import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 import { Outlet } from 'react-router';
 import useProducts from './hooks/useProduct';
 import { useMemo, useState } from 'react';
-
-function getObjectsByCategory(array, chosenCategory) {
-  return array.filter(item => item.category === chosenCategory);
-}
+import { getObjectsByCategory } from './utils/dataHelpers';
 
 function getRandomItems(array, number) {
   const shuffled = [...array].sort(() => 0.5 - Math.random());
@@ -66,8 +63,17 @@ function App() {
         {error && <h2 className='error-message'>Could not load products. Please try again. Error: {error}</h2>}
         {!loading && !error &&
         <Outlet context={
-          {randomHomeData, homeCategoryList, shoppingCart, addToCart, MAX_ITEM_QUANTITY}}
-        />}  
+          {
+            randomHomeData,
+            homeCategoryList, 
+            shoppingCart, 
+            addToCart, 
+            MAX_ITEM_QUANTITY, 
+            productData,
+          }
+        }
+        />
+        }  
       </main>
       <Footer />
     </>

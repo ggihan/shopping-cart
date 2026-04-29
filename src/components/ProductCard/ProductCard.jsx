@@ -1,14 +1,7 @@
 import styles from "./ProductCard.module.css"
-
-function formatCategoryTitle(string) {
-  return string
-    .split('-')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
-}
+import { formatCategoryTitle } from "../../utils/dataHelpers";
 
 export default function ProductCard({ cardCategory, items }) {
-  
   const cardTitle = formatCategoryTitle(cardCategory);
 
   return (

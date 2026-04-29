@@ -1,7 +1,7 @@
-import ItemCard from "../ItemCard/ItemCard";
+import CategoryCard from "../CategoryCard/CategoryCard";
 import styles from "./Shop.module.css";
 
-const testItem = {
+const testItem = [{
   "id": 1,
   "title": "Essence Mascara Lash Princess",
   "description": "The Essence Mascara Lash Princess is a popular mascara known for its volumizing and lengthening effects. Achieve dramatic lashes with this long-lasting and cruelty-free formula.",
@@ -60,14 +60,16 @@ const testItem = {
     "https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/1.webp"
   ],
   "thumbnail": "https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/thumbnail.webp"
-};
+}];
+
+const testCategory = "beauty";
 
 export default function Shop() {
 
   return (
     <div>
       <h1>Shop</h1>
-      <ItemCard item={testItem} />
+      <CategoryCard category={testCategory} categoryItems={testItem} />
     </div>
   );
 };
