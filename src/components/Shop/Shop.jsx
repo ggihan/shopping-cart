@@ -1,75 +1,39 @@
-import CategoryCard from "../CategoryCard/CategoryCard";
 import styles from "./Shop.module.css";
-
-const testItem = [{
-  "id": 1,
-  "title": "Essence Mascara Lash Princess",
-  "description": "The Essence Mascara Lash Princess is a popular mascara known for its volumizing and lengthening effects. Achieve dramatic lashes with this long-lasting and cruelty-free formula.",
-  "category": "beauty",
-  "price": 9.99,
-  "discountPercentage": 10.48,
-  "rating": 2.56,
-  "stock": 99,
-  "tags": [
-    "beauty",
-    "mascara"
-  ],
-  "brand": "Essence",
-  "sku": "BEA-ESS-ESS-001",
-  "weight": 4,
-  "dimensions": {
-    "width": 15.14,
-    "height": 13.08,
-    "depth": 22.99
-  },
-  "warrantyInformation": "1 week warranty",
-  "shippingInformation": "Ships in 3-5 business days",
-  "availabilityStatus": "In Stock",
-  "reviews": [
-    {
-      "rating": 3,
-      "comment": "Would not recommend!",
-      "date": "2025-04-30T09:41:02.053Z",
-      "reviewerName": "Eleanor Collins",
-      "reviewerEmail": "eleanor.collins@x.dummyjson.com"
-    },
-    {
-      "rating": 4,
-      "comment": "Very satisfied!",
-      "date": "2025-04-30T09:41:02.053Z",
-      "reviewerName": "Lucas Gordon",
-      "reviewerEmail": "lucas.gordon@x.dummyjson.com"
-    },
-    {
-      "rating": 5,
-      "comment": "Highly impressed!",
-      "date": "2025-04-30T09:41:02.053Z",
-      "reviewerName": "Eleanor Collins",
-      "reviewerEmail": "eleanor.collins@x.dummyjson.com"
-    }
-  ],
-  "returnPolicy": "No return policy",
-  "minimumOrderQuantity": 48,
-  "meta": {
-    "createdAt": "2025-04-30T09:41:02.053Z",
-    "updatedAt": "2025-04-30T09:41:02.053Z",
-    "barcode": "5784719087687",
-    "qrCode": "https://cdn.dummyjson.com/public/qr-code.png"
-  },
-  "images": [
-    "https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/1.webp"
-  ],
-  "thumbnail": "https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/thumbnail.webp"
-}];
-
-const testCategory = "beauty";
+import SearchBar from "../SearchBar/SearchBar";
+import CategoryCard from "../CategoryCard/CategoryCard";
+import { useOutletContext } from "react-router";
+import { useState, useEffect } from "react";
 
 export default function Shop() {
+  const {productData} = useOutletContext();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
 
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedSearch(searchTerm);
+    }, 300);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [searchTerm]);
+
+  const filteredItems = productData.filter(item => 
+    item.title.toLowerCase().includes(debouncedSearch.toLowerCase())
+  );
+
+  const groupedFilteredItems = Object.groupBy(filteredItems, ({ category }) => category);
+  
   return (
     <div>
-      <h1>Shop</h1>
-      <CategoryCard category={testCategory} categoryItems={testItem} />
+      <h1 className={styles.title}>Shop</h1>
+      <SearchBar value={searchTerm} onSearchChange={setSearchTerm} />
+      <div className={styles.categoryGroup}>
+        {Object.entries(groupedFilteredItems).map(([name, items]) => (
+          <CategoryCard key={name} category={name} categoryItems={items} />
+        ))}
+      </div>
     </div>
   );
 };

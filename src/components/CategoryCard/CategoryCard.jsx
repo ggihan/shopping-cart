@@ -13,7 +13,7 @@ export default function CategoryCard({ category, categoryItems }) {
   }
 
   return (
-    <div className={styles.card}>
+    <section className={styles.card}>
       <h2 className={styles.category}>{cardTitle}</h2>
       <Button 
         className={styles.toggleButton}
@@ -28,6 +28,6 @@ export default function CategoryCard({ category, categoryItems }) {
         ))}
       </div>
       }
-    </div>
+    </section>
   );
 };
