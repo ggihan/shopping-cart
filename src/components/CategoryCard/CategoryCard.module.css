@@ -1,0 +1,5 @@
+.itemCardGroup {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}

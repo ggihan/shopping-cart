@@ -6,7 +6,13 @@ import ItemCard from "../ItemCard/ItemCard";
 
 export default function CategoryCard({ category, categoryItems }) {
   const [hidden, setHidden] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const MAX_VISIBLE = 5;
   const cardTitle = formatCategoryTitle(category);
+
+  const visibleItems = isExpanded 
+    ? categoryItems 
+    : categoryItems.slice(0, MAX_VISIBLE);
 
   const handleToggle = () => {
     setHidden(prev => !prev);
@@ -17,17 +23,22 @@ export default function CategoryCard({ category, categoryItems }) {
       <h2 className={styles.category}>{cardTitle}</h2>
       <Button 
         className={styles.toggleButton}
-        children={hidden ? "show" : "hide"}
+        children={hidden ? "Show" : "Hide"}
         onClick={handleToggle}
         aria-expanded={!hidden}
       />
       {!hidden && 
-      <div className={styles.itemCardGroup}>
-        {categoryItems.map((item) => (
+      <div className={`${styles.itemCardGroup} flex-row`}>
+        {visibleItems.map((item) => (
           <ItemCard key={item.id} item={item} />
         ))}
       </div>
       }
+      {categoryItems.length > MAX_VISIBLE && !hidden && (
+        <Button onClick={() => setIsExpanded(!isExpanded)}>
+          {isExpanded ? "Show Less" : "Show More"}
+        </Button>
+      )}
     </section>
   );
 };

@@ -31,6 +31,38 @@ const mockCategoryItems = [
     description: 'Test description2',
     rating: 4.5
   },
+  {
+    id: 3,
+    title: 'Test Product3',
+    price: 10,
+    images: ['test.jpg'],
+    description: 'Test description1',
+    rating: 4.5
+  },
+  {
+    id: 4,
+    title: 'Test Product4',
+    price: 5,
+    images: ['test.jpg'],
+    description: 'Test description2',
+    rating: 4.5
+  },
+  {
+    id: 5,
+    title: 'Test Product5',
+    price: 10,
+    images: ['test.jpg'],
+    description: 'Test description1',
+    rating: 4.5
+  },
+  {
+    id: 6,
+    title: 'Test Product6',
+    price: 5,
+    images: ['test.jpg'],
+    description: 'Test description2',
+    rating: 4.5
+  },
 ];
 
 describe('CategoryCard', () => {
@@ -42,7 +74,7 @@ describe('CategoryCard', () => {
     });
   });
 
-  it('shows all itemCards from its category', () => {
+  it('shows itemCards from its category', () => {
     render(<CategoryCard category={mockCategory} categoryItems={mockCategoryItems} />);
 
     const firstItem = screen.getByText(/test product1/i);
@@ -50,6 +82,13 @@ describe('CategoryCard', () => {
 
     expect(firstItem).toBeInTheDocument();
     expect(secondItem).toBeInTheDocument();
+  });
+
+  it('only renders the first 5 items initially when more are provided', () => {
+    render(<CategoryCard category={mockCategory} categoryItems={mockCategoryItems} />);
+
+    const renderedItems = screen.getAllByRole('heading', { level: 3 });
+    expect(renderedItems).toHaveLength(5);
   });
 
   it('hides categoryItems when hide button is clicked', async () => {
@@ -80,5 +119,16 @@ describe('CategoryCard', () => {
     const firstItem = screen.getByText(/test product1/i);
     expect(firstItem).toBeInTheDocument();
     expect(hideButton).toHaveTextContent(/hide/i);
+  });
+
+  it('renders all items after clicking Show More button', async () => {
+    render(<CategoryCard category={mockCategory} categoryItems={mockCategoryItems} />);
+
+    const user = userEvent.setup();
+    const showMoreBtn = screen.getByRole('button', { name: /show more/i });
+    await user.click(showMoreBtn);
+
+    const allItems = screen.getAllByRole('heading', { level: 3 });
+    expect(allItems).toHaveLength(6);
   });
 });
