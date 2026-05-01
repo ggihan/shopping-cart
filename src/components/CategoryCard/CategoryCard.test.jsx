@@ -36,7 +36,7 @@ const mockCategoryItems = [
     title: 'Test Product3',
     price: 10,
     images: ['test.jpg'],
-    description: 'Test description1',
+    description: 'Test description3',
     rating: 4.5
   },
   {
@@ -44,7 +44,7 @@ const mockCategoryItems = [
     title: 'Test Product4',
     price: 5,
     images: ['test.jpg'],
-    description: 'Test description2',
+    description: 'Test description4',
     rating: 4.5
   },
   {
@@ -52,7 +52,7 @@ const mockCategoryItems = [
     title: 'Test Product5',
     price: 10,
     images: ['test.jpg'],
-    description: 'Test description1',
+    description: 'Test description5',
     rating: 4.5
   },
   {
@@ -60,7 +60,7 @@ const mockCategoryItems = [
     title: 'Test Product6',
     price: 5,
     images: ['test.jpg'],
-    description: 'Test description2',
+    description: 'Test description6',
     rating: 4.5
   },
 ];

@@ -3,7 +3,7 @@ import MiniShoppingCart from "../MiniShoppingCart/MiniShoppingCart";
 import styles from "./Header.module.css";
 import { Link } from "react-router";
 
-export default function Header() {
+export default function Header({ totalItems }) {
 
   return (
     <header>
@@ -18,7 +18,7 @@ export default function Header() {
           </li>
           <li className={styles.lastLink}>
             <Link to="cart" className="inline-flex-row">
-              <MiniShoppingCart size="5rem" totalItems={69}/>
+              <MiniShoppingCart size="5rem" totalItems={totalItems}/>
             </Link>
           </li>
         </ul>

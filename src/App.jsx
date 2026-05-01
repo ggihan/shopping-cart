@@ -26,7 +26,8 @@ const homeCategoryList = ["mobile-accessories", "beauty", "groceries", "kitchen-
 
 function App() {
   const { productData, error, loading } = useProducts();
-  const [shoppingCart, setShoppingCart] = useState([])
+  const [shoppingCart, setShoppingCart] = useState([]);
+  const totalItems = shoppingCart.reduce((sum, item) => sum + item.quantity, 0);
 
   const addToCart = (newItem, quantityToAdd) => {
     setShoppingCart((prevCart) => {
@@ -57,7 +58,7 @@ function App() {
 
   return (
     <>
-      <Header /> 
+      <Header totalItems={totalItems} /> 
       <main>
         {loading && <LoadingSpinner />}
         {error && <h2 className='error-message'>Could not load products. Please try again. Error: {error}</h2>}

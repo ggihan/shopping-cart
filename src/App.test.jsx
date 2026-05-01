@@ -1,6 +1,7 @@
 import { describe, it, expect, vi} from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { createMemoryRouter, RouterProvider } from 'react-router';
+import { createMemoryRouter, RouterProvider, MemoryRouter } from 'react-router';
+import Header from './components/Header/Header';
 import routes from './components/Routes/routes';
 import userEvent from '@testing-library/user-event';
 
@@ -125,4 +126,36 @@ describe('App', () => {
     expect(loadingIndicator).toBeInTheDocument();
     expect(homeHeading).not.toBeInTheDocument();
   });
+
+  it('header shopping cart icon shows 0 total item amount', async () => {
+    const router = createMemoryRouter(routes, {
+      initialEntries: ["/shop"],
+    });
+
+    render(<RouterProvider router={router} />);
+
+    const cartLink = screen.getByRole('link', { name: /cart/i });
+
+    expect(cartLink).toHaveTextContent("0");
+  });
+
+  it('header shopping cart icon shows combined total item amount', async () => {
+
+    const mockCart = [
+      { id: 1, quantity: 10 },
+      { id: 2, quantity: 7 }
+    ];
+
+    const totalItems = mockCart.reduce((sum, item) => sum + item.quantity, 0);
+
+    render(
+    <MemoryRouter>
+      <Header totalItems={totalItems} />
+    </MemoryRouter>);
+
+    const cartLink = screen.getByRole('link', { name: /cart/i });
+
+    expect(cartLink).toHaveTextContent("17");
+  });
+  
 });
