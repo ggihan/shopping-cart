@@ -10,10 +10,10 @@ window.fetch = vi.fn(() =>
     ok: true,
     json: () => Promise.resolve({ 
       products: [
-        { id: 1, title: 'Test 1', category: 'mobile-accessories', images: ['test.jpg'] },
-        { id: 2, title: 'Test 2', category: 'beauty', images: ['test.jpg'] },
-        { id: 3, title: 'Test 3', category: 'groceries', images: ['test.jpg'] },
-        { id: 4, title: 'Test 4', category: 'kitchen-accessories', images: ['test.jpg'] },
+        { id: 1, title: 'Test 1', category: 'mobile-accessories', images: ['test.jpg'], price: 8.00 },
+        { id: 2, title: 'Test 2', category: 'beauty', images: ['test.jpg'], price: 8.00},
+        { id: 3, title: 'Test 3', category: 'groceries', images: ['test.jpg'], price: 8.00 },
+        { id: 4, title: 'Test 4', category: 'kitchen-accessories', images: ['test.jpg'], price: 8.00 },
       ]
     }),
   })
@@ -56,9 +56,9 @@ describe('App', () => {
 
     const user = userEvent.setup();
     const cartLink = screen.getByRole('link', { name: /cart/i });
-
+    
     await user.click(cartLink);
-    const heading = screen.getByRole('heading', { name: /cart/i });
+    const heading = screen.getByRole('heading', { name: /shopping cart/i });
 
     expect(heading).toBeInTheDocument();
   });
@@ -157,5 +157,4 @@ describe('App', () => {
 
     expect(cartLink).toHaveTextContent("17");
   });
-  
 });

@@ -1,10 +1,33 @@
-
+import styles from "./Cart.module.css";
+import CartCard from "../CartCard/CartCard";
+import { useOutletContext, } from "react-router";
+import { useMemo } from "react";
 
 export default function Cart() {
-  
+  const { shoppingCart, productData } = useOutletContext();
+
+  const cartItemsWithDetails = shoppingCart.map((cartItem) => {
+    const productDetails = productData.find((p) => p.id === cartItem.id);
+
+    return {
+      ...productDetails,
+      quantity: cartItem.quantity,
+    };
+  });
+
+  const totalCost = useMemo(() => cartItemsWithDetails.reduce((accumulator, item) => {
+    return accumulator + (item.price * item.quantity);
+  }, 0), [cartItemsWithDetails]);
+
   return (
-    <div>
-      <h1>Shopping Cart</h1>
+    <div className={styles.cart}>
+      <h1 className={styles.title}>Shopping Cart</h1>
+      <div className={styles.cardGroup}>
+        {cartItemsWithDetails.map((item) => (
+          <CartCard key={item.id} item={item} />
+        ))}
+      </div>
+      <p className={styles.total}>Subtotal: {totalCost.toFixed(2)}$</p>
     </div>
   );
 };

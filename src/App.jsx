@@ -45,7 +45,19 @@ function App() {
     });
   };
 
-  console.log("shopping cart:", shoppingCart);
+  const updateQuantity = (id, delta) => {
+    setShoppingCart((prevCart) =>
+      prevCart.map((item) =>
+        item.id === id
+          ? { ...item, quantity: Math.min(Math.max(item.quantity + delta, 1), MAX_ITEM_QUANTITY) }
+          : item
+      )
+    );
+  };
+
+  const removeFromCart = (id) => {
+    setShoppingCart((prevCart) => prevCart.filter((item) => item.id !== id));
+  };
 
   const randomHomeData = useMemo(() => {
     if (!productData || loading) return {};
@@ -67,8 +79,10 @@ function App() {
           {
             randomHomeData,
             homeCategoryList, 
-            shoppingCart, 
-            addToCart, 
+            shoppingCart,
+            updateQuantity,
+            addToCart,
+            removeFromCart,
             MAX_ITEM_QUANTITY, 
             productData,
           }
