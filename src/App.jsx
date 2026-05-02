@@ -69,7 +69,7 @@ function App() {
   }, [productData, loading]);
 
   return (
-    <>
+    <div className='app-container'>
       <Header totalItems={totalItems} /> 
       <main>
         {loading && <LoadingSpinner />}
@@ -91,7 +91,7 @@ function App() {
         }  
       </main>
       <Footer />
-    </>
+    </div>
   )
 }
 

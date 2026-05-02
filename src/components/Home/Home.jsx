@@ -8,22 +8,24 @@ export default function Home() {
 
   return (
     <div className={styles.home}>
-      <div className={styles.intro}>
-        <div className={styles.introCard}>
+      <div className={`${styles.intro} flex-column`}>
+        <div className={`${styles.introCard} flex-column`}>
           <h1 className={styles.title}>Emazon</h1>
-          <p className={styles.introText}>
+          <div className={`${styles.introText} flex-column`}>
             We provide the best products and services around the world!
             <br />
+            <hr />
             Most reliable, secure, and fastest shipping there is.
             <br />
+            <hr />
             Start your orders right here and now!
-          </p>
+          </div>
         </div>
         <div className={styles.introImageContainer}>
-          <img src={introImage} alt="" width={500} />
+          <img src={introImage} alt="" />
         </div>
       </div>
-      <div className={styles.showcase}>
+      <div className={`${styles.showcase} flex-column`}>
         {homeCategoryList.map((category) => {
           const items = randomHomeData[category];
           return (

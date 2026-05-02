@@ -1,6 +1,6 @@
 .nav {
-  padding: 16px;
-  background-color: #123456;
+  padding: var(--space-normal);
+  background-color: var(--color-primary-dark);
 }
 
 .logo {
@@ -10,7 +10,7 @@
 }
 
 .ul {
-  gap: 16px;
+  gap: var(--space-normal);
 }
 
 .link {

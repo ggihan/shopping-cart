@@ -4,9 +4,37 @@
   padding: 0;
 }
 
+:root {
+  /* Sizes */
+  --space-xs: 4px;
+  --space-small: 8px;
+  --space-normal: 16px;
+  --space-large: 24px;
+  --space-xl: 32px;
+
+  /* Brand Colors */
+  /* --color-primary: #0b8022; */
+  --color-primary-light: #1b8530;
+  --color-primary-dark: #0b3814;
+
+  /* Border and Outline */
+  --color-focus: #e9ecf1;
+
+  /* Neutrals */
+  --color-white: #ffffff;
+  --color-gray-100: rgba(242, 240, 240, 1);
+  /* --color-gray-800: #333333; */
+}
+
 img, picture, video, canvas, svg {
   display: block;
   max-width: 100%;
+  height: auto;
+}
+
+hr {
+  border-top: 3px solid black;
+  border-radius: 10px;
 }
 
 ul {
@@ -19,7 +47,8 @@ a {
 
 a:hover,
 .miniShoppingCard:hover {
-  outline: 2px solid #315e99;
+  outline: 2px solid var(--color-focus);
+  border-radius: 8px;
 }
 
 .flex-row {
@@ -35,4 +64,9 @@ a:hover,
 .inline-flex-row {
   display: inline-flex;
   flex-direction: row;
+}
+
+.inline-flex-column {
+  display: inline-flex;
+  flex-direction: column;
 }
