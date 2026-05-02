@@ -1,3 +1,23 @@
 .card {
   padding: var(--space-small);
+  background-color: var(--color-white);
+  border-radius: 10px;
+}
+
+.title {
+  justify-content: center;
+}
+
+.imageGroup {
+  display: grid;
+  grid-template-columns: 150px 150px;
+  gap: var(--space-normal);
+}
+
+.imageContainer {
+  width: 150px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  background-color: var(--color-gray-200);
+  border-radius: 5px;
 }

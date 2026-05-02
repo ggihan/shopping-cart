@@ -7,7 +7,7 @@ export default function Home() {
   const {randomHomeData, homeCategoryList} = useOutletContext();
 
   return (
-    <div className={styles.home}>
+    <div className={`${styles.home} flex-column`}>
       <div className={`${styles.intro} flex-column`}>
         <div className={`${styles.introCard} flex-column`}>
           <h1 className={styles.title}>Emazon</h1>
