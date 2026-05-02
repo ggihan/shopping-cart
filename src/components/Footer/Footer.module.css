@@ -1,0 +1,25 @@
+.socials img {
+  width: 40px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+}
+
+.socials img:hover {
+  outline: 2px solid #315e99;
+  outline-offset: -2px;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+footer p {
+  font-size: 1.5rem;
+}
+
+ul {
+  gap: 1rem;
+}

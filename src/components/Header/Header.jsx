@@ -8,7 +8,7 @@ export default function Header({ totalItems }) {
   return (
     <header>
       <Logo className={styles.logo} />
-      <nav className={styles.nav}>
+      <nav className={styles.nav} aria-label="Page links">
         <ul className={`flex-row ${styles.ul}`}>
           <li className={styles.link}>
             <Link to="/">Home</Link>
