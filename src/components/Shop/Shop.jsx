@@ -26,7 +26,7 @@ export default function Shop() {
   const groupedFilteredItems = Object.groupBy(filteredItems, ({ category }) => category);
   
   return (
-    <div>
+    <div className={styles.shop}>
       <h1 className={styles.title}>Shop</h1>
       <SearchBar value={searchTerm} onSearchChange={setSearchTerm} />
       <div className={styles.categoryGroup}>

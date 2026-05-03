@@ -43,23 +43,23 @@ export default function ItemCard({ item }) {
   };
 
   return (
-    <div className={styles.card}>
+    <div className={`${styles.card} flex-column`}>
       <h3 className={styles.title}>{item.title}</h3>
-      <div className={styles.info}>
-        <div className={styles.imageContainer}>
-          <img className={styles.image} src={item.images[0]} alt={item.title} width={200}/>
+      <div className={`${styles.info} flex-column`}>
+        <div className={`${styles.imageContainer} flex-row`}>
+          <img className={styles.image} src={item.images[0]} alt={item.title} />
         </div>
-        <div className={styles.details}>
+        <div className={`${styles.details} flex-column`}>
           <p className={styles.price}>{`Price: ${item.price}$`}</p>
           <p className={styles.rating}>{`Rating: ${item.rating} / 5`}</p>
           <p className={styles.description}>{item.description}</p>
         </div>
       </div>
-      <div className={styles.controls}>
-        <div className={styles.counterContainer}>
+      <div className={`${styles.controls} flex-column`}>
+        <div className={`${styles.counterContainer} flex-row`}>
           <label htmlFor={`qty-${item.id}`}>Quantity: </label>
           <input 
-            className={styles.counter}
+            className={`${styles.counter} flex-row`}
             id={`qty-${item.id}`}
             type="number"
             min="1"
@@ -71,24 +71,30 @@ export default function ItemCard({ item }) {
             disabled={isMaxedOut}
           />
         </div>
-        <Button
+        <div className={`${styles.quantityButtons} flex-row`}>
+          <Button
           className={styles.incrementButton}
           children="+"
           onClick={increment}
+          disabled={isMaxedOut}
           aria-label="Increase quantity"
         />
-        <Button
-          className={styles.decrementButton}
-          children="-"
-          onClick={decrement}
-          aria-label="Decrease quantity"
-        />
-        <Button
+          <Button
+            className={styles.decrementButton}
+            children="-"
+            onClick={decrement}
+            disabled={isMaxedOut}
+            aria-label="Decrease quantity"
+          />
+        </div>
+        <div className={`${styles.addToCartButtonContainer} flex-row`}>
+          <Button
           className={styles.addToCartButton}
           children={isMaxedOut ? "Limit Reached" : "Add to Cart"}
           onClick={handleAddToCart}
           disabled={isMaxedOut}
         />
+        </div>
       </div>
     </div>
   );

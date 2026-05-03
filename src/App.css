@@ -1,6 +1,19 @@
-header { grid-area: header; background-color: var(--color-gray-100)}
-main { grid-area: main; background-color: var(--color-gray-100); padding: var(--space-small);}
-footer { grid-area: footer; background-color: var(--color-primary-light)}
+header {
+  grid-area: header;
+  background-color: var(--color-gray-100)
+}
+
+main {
+  grid-area: main;
+  background-color: var(--color-gray-100);
+  padding: var(--space-small);
+  min-width: 0;
+}
+
+footer {
+  grid-area: footer;
+  background-color: var(--color-primary-light);
+}
 
 .app-container {
   display: grid;
