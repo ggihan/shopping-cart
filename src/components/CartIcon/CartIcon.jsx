@@ -15,7 +15,7 @@ export const CartIcon = ({ count, size=75 }) => {
         y="9" 
         fontSize="5" 
         fontWeight="bold"
-        fill="#17850f"
+        fill="#e8b417"
         textAnchor="middle" 
         dominantBaseline="middle"
         fontFamily="sans-serif"

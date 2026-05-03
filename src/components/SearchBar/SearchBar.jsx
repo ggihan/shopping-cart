@@ -6,7 +6,7 @@ export default function SearchBar({ value, onSearchChange }) {
   return (
     <div className={`${styles.searchBar} flex-row`} role="search">
       <input
-        className={styles.search}
+        className={`${styles.search} flex-row`}
         id="search-bar"
         type="text"
         placeholder="Search products..."
@@ -14,7 +14,7 @@ export default function SearchBar({ value, onSearchChange }) {
         onChange={(event) => onSearchChange(event.target.value)}
       />
       <label htmlFor="search-bar">
-        <img src={search} alt="" role="presentation" width={30}/>
+        <img src={search} alt="" role="presentation" />
       </label>
     </div>
   );

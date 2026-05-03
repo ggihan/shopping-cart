@@ -19,14 +19,16 @@ export default function CategoryCard({ category, categoryItems }) {
   }
 
   return (
-    <section className={styles.card}>
+    <section className={`${styles.card} flex-column`}>
       <h2 className={styles.category}>{cardTitle}</h2>
-      <Button 
-        className={styles.toggleButton}
-        children={hidden ? "Show" : "Hide"}
-        onClick={handleToggle}
-        aria-expanded={!hidden}
-      />
+      <div className={`${styles.toggleButtonContainer} flex-row`}>
+        <Button 
+          className={styles.toggleButton}
+          children={hidden ? "Show" : "Hide"}
+          onClick={handleToggle}
+          aria-expanded={!hidden}
+        />
+      </div>
       {!hidden && 
       <div className={`${styles.itemCardGroup} flex-row`}>
         {visibleItems.map((item) => (

@@ -19,6 +19,8 @@
 
   /* Outline */
   --color-focus: #e9ecf1;
+  --color-focus-light: #0fc2bc;
+  /* #0fc233 */
 
   /* Neutrals */
   --color-white: #ffffff;
@@ -27,6 +29,11 @@
   --color-gray-300: #5d5c5c;
   --color-gray-800: #181818;
   --color-gray-900: rgb(3, 26, 1);
+
+  /* Buttons */
+  --color-add: #e77612;
+  --color-inc: #8ef0a2;
+  --color-dec: #cf1804;
 }
 
 img, picture, video, canvas, svg {
@@ -58,9 +65,16 @@ a {
 }
 
 a:hover,
+a:focus,
 .miniShoppingCard:hover {
   outline: 2px solid var(--color-focus);
   border-radius: 8px;
+}
+
+input:focus,
+button:focus {
+  outline: 4px solid var(--color-focus-light);
+  outline-offset: -4px;
 }
 
 .flex-row {

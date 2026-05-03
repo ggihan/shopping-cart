@@ -1,3 +1,18 @@
 .searchBar {
+  height: 44px;
+  gap: var(--space-small);
   justify-content: center;
+}
+
+.search {
+  outline: 4px solid var(--color-primary-dark);
+  outline-offset: -4px;
+  border: none;
+  border-radius: 10px;
+  flex: 1;
+  padding-left: 8px;
+}
+
+.searchBar img {
+  height: 100%;
 }

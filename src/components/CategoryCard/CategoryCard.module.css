@@ -1,3 +1,22 @@
+.card {
+  gap: var(--space-small);
+}
+
+.category {
+  font-size: 2rem;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.toggleButtonContainer {
+  justify-content: center;
+}
+
+.toggleButton {
+  width: 100px;
+  
+}
+
 .itemCardGroup {
   overflow-x: auto;
   scroll-behavior: smooth;

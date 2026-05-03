@@ -26,10 +26,10 @@ export default function Shop() {
   const groupedFilteredItems = Object.groupBy(filteredItems, ({ category }) => category);
   
   return (
-    <div className={styles.shop}>
+    <div className={`${styles.shop} flex-column`}>
       <h1 className={styles.title}>Shop</h1>
       <SearchBar value={searchTerm} onSearchChange={setSearchTerm} />
-      <div className={styles.categoryGroup}>
+      <div className={`${styles.categoryGroup} flex-column`}>
         {Object.entries(groupedFilteredItems).map(([name, items]) => (
           <CategoryCard key={name} category={name} categoryItems={items} />
         ))}
