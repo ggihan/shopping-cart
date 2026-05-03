@@ -23,7 +23,9 @@
   /* Neutrals */
   --color-white: #ffffff;
   --color-gray-100: rgba(242, 240, 240, 1);
-  --color-gray-200: #5d5c5c;
+  --color-gray-200: #9e9b9b;
+  --color-gray-300: #5d5c5c;
+  --color-gray-800: #181818;
 }
 
 img, picture, video, canvas, svg {
