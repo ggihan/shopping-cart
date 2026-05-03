@@ -10,7 +10,14 @@ export default function ProductCard({ cardCategory, items }) {
       <div className={styles.imageGroup}>
         {items.map((item) => (
           <div key={item.id} className={styles.imageContainer}>
-            <img className={styles.image} src={item.images[0]} alt={item.title} />
+            <img
+              className={styles.image}
+              src={item.thumbnail}
+              alt={item.title}
+              loading="lazy"
+              width="200"
+              height="200"
+            />
           </div>
         ))}
       </div>

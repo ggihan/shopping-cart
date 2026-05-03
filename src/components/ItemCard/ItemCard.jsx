@@ -47,7 +47,14 @@ export default function ItemCard({ item }) {
       <h3 className={styles.title}>{item.title}</h3>
       <div className={`${styles.info} flex-column`}>
         <div className={`${styles.imageContainer} flex-row`}>
-          <img className={styles.image} src={item.images[0]} alt={item.title} />
+          <img
+            className={styles.image}
+            src={item.thumbnail}
+            alt={item.title}
+            loading="lazy"
+            width="200"
+            height="200"
+          />
         </div>
         <div className={`${styles.details} flex-column`}>
           <p className={styles.price}>{`Price: ${item.price}$`}</p>
