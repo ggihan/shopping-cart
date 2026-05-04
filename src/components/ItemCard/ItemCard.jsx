@@ -80,12 +80,12 @@ export default function ItemCard({ item }) {
         </div>
         <div className={`${styles.quantityButtons} flex-row`}>
           <Button
-          className={styles.incrementButton}
-          children="+"
-          onClick={increment}
-          disabled={isMaxedOut}
-          aria-label="Increase quantity"
-        />
+            className={styles.incrementButton}
+            children="+"
+            onClick={increment}
+            disabled={isMaxedOut}
+            aria-label="Increase quantity"
+          />
           <Button
             className={styles.decrementButton}
             children="-"

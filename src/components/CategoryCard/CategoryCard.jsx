@@ -37,9 +37,11 @@ export default function CategoryCard({ category, categoryItems }) {
       </div>
       }
       {categoryItems.length > MAX_VISIBLE && !hidden && (
-        <Button onClick={() => setIsExpanded(!isExpanded)}>
-          {isExpanded ? "Show Less" : "Show More"}
-        </Button>
+        <Button 
+          className={styles.expandButton}
+          onClick={() => setIsExpanded(!isExpanded)}
+          children= {isExpanded ? "Show Less" : "Show More"}
+        />
       )}
     </section>
   );

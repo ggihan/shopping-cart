@@ -12,9 +12,13 @@
   justify-content: center;
 }
 
-.toggleButton {
+.toggleButton,
+.expandButton {
   width: 100px;
-  
+}
+
+.expandButton {
+  align-self: flex-end;
 }
 
 .itemCardGroup {

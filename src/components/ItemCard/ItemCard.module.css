@@ -89,6 +89,7 @@
 .decrementButton {
   background-color: var(--color-dec);
   font-size: 2.5rem;
+  line-height: 1;
 }
 
 .addToCartButton {

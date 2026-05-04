@@ -20,14 +20,14 @@ export default function Cart() {
   }, 0), [cartItemsWithDetails]);
 
   return (
-    <div className={styles.cart}>
+    <div className={`${styles.cart} flex-column`}>
       <h1 className={styles.title}>Shopping Cart</h1>
-      <div className={styles.cardGroup}>
+      <div className={`${styles.cardGroup} flex-column`}>
         {cartItemsWithDetails.map((item) => (
           <CartCard key={item.id} item={item} />
         ))}
       </div>
-      <p className={styles.total}>Subtotal: {totalCost.toFixed(2)}$</p>
+      <p className={`${styles.total} flex-row`}>Subtotal: {totalCost.toFixed(2)}$</p>
     </div>
   );
 };

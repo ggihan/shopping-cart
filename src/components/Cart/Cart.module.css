@@ -1,0 +1,17 @@
+.cart {
+  gap: var(--space-normal);
+}
+
+.cardGroup {
+  align-items: center;
+  gap: var(--space-large);
+}
+
+.total {
+  color: var(--color-white);
+  background-color: var(--color-add);
+  border: 2px solid var(--color-gray-900);
+  border-radius: 5px;
+  justify-content: center;
+  font-size: 2rem;
+}
