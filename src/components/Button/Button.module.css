@@ -1,4 +1,17 @@
 .baseButton {
   height: 44px;
+  outline: 1px solid black;
   border-radius: 20px;
+  box-shadow: 2px 2px 2px black;
+  cursor: pointer;
+}
+
+.baseButton:active {
+  box-shadow: 3px 3px 3px black;
+  background-image: linear-gradient(rgb(0 0 0/40%) 0 0);
+  transform: scale(0.95) translateY(4px);
+}
+
+.baseButton:hover {
+  outline: 3px solid black;
 }

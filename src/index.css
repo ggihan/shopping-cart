@@ -76,8 +76,8 @@ a:focus,
   border-radius: 8px;
 }
 
-input:focus,
-button:focus {
+input:focus-visible,
+button:focus-visible {
   outline: 4px solid var(--color-focus-light);
   outline-offset: -4px;
 }
