@@ -28,3 +28,14 @@
   scroll-snap-type: x mandatory;
   gap: var(--space-normal);
 }
+
+@media (min-width: 1024px) {
+  .card {
+    gap: var(--space-large);
+  }
+
+  .itemCardGroup {
+    gap: var(--space-large);
+    padding-bottom: var(--space-small);
+  }
+}

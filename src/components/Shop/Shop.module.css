@@ -5,3 +5,9 @@
 .categoryGroup {
   gap: var(--space-large);
 }
+
+@media (min-width: 1024px) {
+  .shop {
+    gap: var(--space-xl);
+  }
+}

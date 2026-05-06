@@ -27,7 +27,7 @@ footer {
 }
 
 @media (min-width: 1024px) {
-  /* main {
+  main {
     padding: 20px clamp(16px, 5vw, 80px);
-  } */
+  }
 }
