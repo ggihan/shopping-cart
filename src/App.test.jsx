@@ -1,5 +1,5 @@
 import { describe, it, expect, vi} from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider, MemoryRouter } from 'react-router';
 import Header from './components/Header/Header';
 import routes from './components/Routes/routes';
@@ -72,7 +72,8 @@ describe('App', () => {
 
     const user = userEvent.setup();
     const cartLink = screen.getByRole('link', { name: /cart/i });
-    const homeLink = screen.getByRole('link', { name: /home/i });
+    const nav = screen.getByRole('navigation', { name: /page links/i });
+    const homeLink = within(nav).getByRole('link', { name: /home/i });
 
     await user.click(cartLink);
     await user.click(homeLink);

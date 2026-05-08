@@ -3,6 +3,8 @@ import { useState } from "react";
 import { formatCategoryTitle } from "../../utils/dataHelpers";
 import Button from "../Button/Button";
 import ItemCard from "../ItemCard/ItemCard";
+import chevronUp from "../../assets/images/chevron-up.svg";
+import chevronDown from "../../assets/images/chevron-down.svg";
 
 export default function CategoryCard({ category, categoryItems }) {
   const [hidden, setHidden] = useState(false);
@@ -20,14 +22,23 @@ export default function CategoryCard({ category, categoryItems }) {
 
   return (
     <section className={`${styles.card} flex-column`}>
-      <h2 className={styles.category}>{cardTitle}</h2>
-      <div className={`${styles.toggleButtonContainer} flex-row`}>
-        <Button 
-          className={styles.toggleButton}
-          children={hidden ? "Show" : "Hide"}
-          onClick={handleToggle}
-          aria-expanded={!hidden}
-        />
+      <div className={`${styles.cardHeader} flex-row`}>
+        <h2 className={styles.category}>{cardTitle}</h2>
+        <div className={styles.toggleButtonContainer}>
+          <Button 
+            className={styles.toggleButton}
+            onClick={handleToggle}
+            aria-expanded={!hidden}
+            aria-label={hidden ? `Expand ${cardTitle}` : `Collapse ${cardTitle}`}
+          >
+            <img 
+              src={!hidden ? chevronUp : chevronDown} 
+              alt=""
+              width="40" 
+              height="40" 
+            />
+          </Button>
+        </div>
       </div>
       {!hidden && 
       <div className={`${styles.itemCardGroup} flex-row`}>

@@ -96,29 +96,29 @@ describe('CategoryCard', () => {
 
     const user = userEvent.setup();
     const firstItem = screen.getByText(/test product1/i);
-    const hideButton = screen.getByRole('button', { name: /hide/i });
+    const toggleButton = screen.getByRole('button', { name: /collapse/i });
 
     expect(firstItem).toBeInTheDocument();
-    await user.click(hideButton);
+    await user.click(toggleButton);
 
     expect(firstItem).not.toBeInTheDocument();
-    expect(hideButton).toHaveTextContent(/show/i);
+    expect(toggleButton).toHaveAccessibleName(/expand/i);
   });
 
   it('shows categoryItems when show button is clicked', async () => {
     render(<CategoryCard category={mockCategory} categoryItems={mockCategoryItems} />);
 
     const user = userEvent.setup();
-    const hideButton = screen.getByRole('button', { name: /hide/i });
+    const toggleButton = screen.getByRole('button', { name: /collapse/i });
 
-    await user.click(hideButton);
+    await user.click(toggleButton);
 
-    const showButton = screen.getByRole('button', { name: /show/i });
-    await user.click(showButton);
+    const toggleButtonCollapsed = screen.getByRole('button', { name: /expand/i });
+    await user.click(toggleButtonCollapsed);
 
     const firstItem = screen.getByText(/test product1/i);
     expect(firstItem).toBeInTheDocument();
-    expect(hideButton).toHaveTextContent(/hide/i);
+    expect(toggleButton).toHaveAccessibleName(/collapse/i);
   });
 
   it('renders all items after clicking Show More button', async () => {

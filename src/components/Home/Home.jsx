@@ -20,7 +20,12 @@ export default function Home() {
           </div>
         </div>
         <div className={styles.introImageContainer}>
-          <img src={introImage} alt="" />
+          <img
+            src={introImage}
+            alt="" 
+            width="600"
+            height="400"
+          />
         </div>
       </div>
       <div className={`${styles.showcaseContainer} flex-row`}>
