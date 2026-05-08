@@ -2,6 +2,10 @@
   gap: var(--space-normal);
 }
 
+.title {
+  text-align: center;
+}
+
 .cardGroup {
   align-items: center;
   gap: var(--space-large);
@@ -12,6 +16,7 @@
   background-color: var(--color-add);
   border: 2px solid var(--color-gray-900);
   border-radius: 5px;
+  box-shadow: 2px 4px 10px var(--color-gray-900);
   justify-content: center;
   font-size: 2rem;
 }

@@ -13,8 +13,9 @@
   gap: var(--space-normal);
   background-color: var(--color-primary-light);
   padding: var(--space-small);
-  border: 2px solid var(--color-gray-900);
+  border: 3px solid var(--color-gray-900);
   border-radius: 10px;
+  box-shadow: 3px 6px 10px var(--color-gray-900);
 }
 
 .toggleButtonContainer {
@@ -41,6 +42,8 @@
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: x mandatory;
   gap: var(--space-normal);
+  padding-bottom: var(--space-small);
+  padding-right: var(--space-small);
 }
 
 @media (min-width: 1024px) {
@@ -50,6 +53,5 @@
 
   .itemCardGroup {
     gap: var(--space-large);
-    padding-bottom: var(--space-small);
   }
 }
