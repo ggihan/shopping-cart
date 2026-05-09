@@ -83,10 +83,4 @@
     padding: var(--space-small);
     border-left: 3px solid var(--color-gray-900);
   }
-
-  .title,
-  .price,
-  .counter {
-    font-size: 1.5rem;
-  }
 }
