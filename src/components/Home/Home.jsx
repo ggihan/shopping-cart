@@ -1,5 +1,5 @@
 import styles from "./Home.module.css";
-import introImage from "../../assets/images/intro-image.webp"
+import introImage from "../../assets/images/intro-image.600w.webp"
 import ProductCard from "../ProductCard/ProductCard";
 import { useOutletContext } from "react-router";
 
