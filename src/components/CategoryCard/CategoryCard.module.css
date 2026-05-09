@@ -3,13 +3,13 @@
 }
 
 .category {
-  font-size: 2rem;
   text-align: center;
   text-decoration: underline;
 }
 
 .cardHeader {
   justify-content: space-between;
+  align-items: center;
   gap: var(--space-normal);
   background-color: var(--color-primary-light);
   padding: var(--space-small);
