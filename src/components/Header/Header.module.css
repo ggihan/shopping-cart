@@ -1,38 +1,5 @@
-.nav {
-  padding: var(--space-normal);
-  background-color: var(--color-primary-dark);
-}
-
 .logo {
   width: 200px;
   height: auto;
   aspect-ratio: 2 / 1;
-}
-
-.ul {
-  gap: var(--space-normal);
-}
-
-.link {
-  display: flex;
-  align-items: center;
-  font-size: 1.66rem;
-}
-
-.link a {
-  color: white;
-}
-
-.lastLink {
-  margin-left: auto;
-}
-
-@media (min-width: 1024px) {
-  .nav {
-    padding: var(--space-normal) var(--space-xl) var(--space-normal) var(--space-xl);
-  }
-
-  .ul {
-    gap: var(--space-xl);
-  }
 }

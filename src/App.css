@@ -3,6 +3,10 @@ header {
   background-color: var(--color-gray-100)
 }
 
+nav {
+  grid-area: nav;
+}
+
 main {
   grid-area: main;
   background-color: var(--color-gray-100);
@@ -19,9 +23,10 @@ footer {
   display: grid;
   grid-template-areas: 
     "header"
+    "nav"
     "main"
     "footer";
-  grid-template-rows: auto 1fr 52px;
+  grid-template-rows: auto auto 1fr 52px;
   min-height: 100vh;
   background-color: rgba(242, 240, 240, 1);
 }

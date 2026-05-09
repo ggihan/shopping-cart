@@ -6,6 +6,7 @@ import { Outlet } from 'react-router';
 import useProducts from './hooks/useProduct';
 import { useMemo, useState } from 'react';
 import { getObjectsByCategory } from './utils/dataHelpers';
+import Nav from './components/Nav/Nav';
 
 function getRandomItems(array, number) {
   const shuffled = [...array].sort(() => 0.5 - Math.random());
@@ -70,7 +71,8 @@ function App() {
 
   return (
     <div className='app-container'>
-      <Header totalItems={totalItems} /> 
+      <Header />
+      <Nav totalItems={totalItems} />
       <main>
         {loading && <LoadingSpinner />}
         {error && <h2 className='error-message'>Could not load products. Please try again. Error: {error}</h2>}

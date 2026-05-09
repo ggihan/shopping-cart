@@ -4,6 +4,7 @@ import { createMemoryRouter, RouterProvider, MemoryRouter } from 'react-router';
 import Header from './components/Header/Header';
 import routes from './components/Routes/routes';
 import userEvent from '@testing-library/user-event';
+import Nav from './components/Nav/Nav';
 
 window.fetch = vi.fn(() =>
   Promise.resolve({
@@ -151,7 +152,7 @@ describe('App', () => {
 
     render(
     <MemoryRouter>
-      <Header totalItems={totalItems} />
+      <Nav totalItems={totalItems} />
     </MemoryRouter>);
 
     const cartLink = screen.getByRole('link', { name: /cart/i });
