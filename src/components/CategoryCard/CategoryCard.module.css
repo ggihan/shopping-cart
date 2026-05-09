@@ -34,7 +34,22 @@
 
 .expandButton {
   align-self: flex-end;
+  margin-right: 8px;
 }
+
+.carouselWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.navButton {
+  position: absolute;
+  top: 30%;
+  display: none;
+}
+
+.left { left: 10px; }
+.right { right: 10px; }
 
 .itemCardGroup {
   overflow-x: auto;
@@ -46,9 +61,19 @@
   padding-right: var(--space-small);
 }
 
+.itemCardGroup > * {
+  scroll-snap-align: start;
+}
+
 @media (min-width: 1024px) {
   .card {
     gap: var(--space-large);
+  }
+
+  .carouselWrapper:hover .navButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .itemCardGroup {

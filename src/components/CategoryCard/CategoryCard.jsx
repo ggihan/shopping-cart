@@ -1,10 +1,12 @@
 import styles from "./CategoryCard.module.css";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { formatCategoryTitle } from "../../utils/dataHelpers";
 import Button from "../Button/Button";
 import ItemCard from "../ItemCard/ItemCard";
 import chevronUp from "../../assets/images/chevron-up.svg";
 import chevronDown from "../../assets/images/chevron-down.svg";
+import chevronLeft from "../../assets/images/chevron-left.svg";
+import chevronRight from "../../assets/images/chevron-right.svg";
 
 export default function CategoryCard({ category, categoryItems }) {
   const [hidden, setHidden] = useState(false);
@@ -15,6 +17,19 @@ export default function CategoryCard({ category, categoryItems }) {
   const visibleItems = isExpanded 
     ? categoryItems 
     : categoryItems.slice(0, MAX_VISIBLE);
+
+  const scrollRef = useRef(null);
+
+  const scroll = (direction) => {
+    const { current } = scrollRef;
+    if (current) {
+      const scrollAmount = 424;
+      current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth', 
+      });
+    }
+  };
 
   const handleToggle = () => {
     setHidden(prev => !prev);
@@ -41,10 +56,18 @@ export default function CategoryCard({ category, categoryItems }) {
         </div>
       </div>
       {!hidden && 
-      <div className={`${styles.itemCardGroup} flex-row`}>
-        {visibleItems.map((item) => (
-          <ItemCard key={item.id} item={item} />
-        ))}
+      <div className={styles.carouselWrapper}>
+        <Button className={`${styles.navButton} ${styles.left}`} onClick={() => scroll('left')}>
+          <img src={chevronLeft} alt="Scroll Left" width="40" height="40" />
+        </Button>
+        <div className={`${styles.itemCardGroup} flex-row`} ref={scrollRef}>
+          {visibleItems.map((item) => (
+            <ItemCard key={item.id} item={item} />
+          ))}
+        </div>
+        <Button className={`${styles.navButton} ${styles.right}`} onClick={() => scroll('right')}>
+          <img src={chevronRight} alt="Scroll Right" width="40" height="40" />
+        </Button>
       </div>
       }
       {categoryItems.length > MAX_VISIBLE && !hidden && (
