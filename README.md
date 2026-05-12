@@ -2,6 +2,8 @@
 
 A classic project in React - a mock shopping cart.
 
+Live Website: https://shopping-cart-delta-lac.vercel.app
+
 Sources:
 
 Icons by: https://pictogrammers.com/library/mdi/
